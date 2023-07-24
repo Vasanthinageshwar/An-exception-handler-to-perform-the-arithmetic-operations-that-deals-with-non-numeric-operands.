@@ -1,0 +1,57 @@
+NumberFormatException: Write a program with an exception handler to perform the arithmetic operations (+, -, . (for *), /, %) that
+deals with non-numeric operands. The program has to accept two operands and an operator from the user and raises and
+exception if any operand is non-numeric.
+
+CODE:
+import java.util.*;
+class Exercise12_01 {
+public static void main(String[] args) {
+Scanner sc=new Scanner(System.in);
+String op1=sc.next();
+String op2=sc.next();
+char op3=sc.next().charAt(0);
+if (new Exercise12_01().checkInput(op1,op2)) { // Check for non-numeric operands in args[]
+int result = 0;
+switch (op3) {
+case '+':
+result = Integer.parseInt(op1) +
+Integer.parseInt(op2);
+break;
+case '-':
+result = Integer.parseInt(op1) -
+Integer.parseInt(op2);
+break;
+case '.':
+result = Integer.parseInt(op1) *
+Integer.parseInt(op2);
+break;
+case '/':
+result = Integer.parseInt(op1)/Integer.parseInt(op2);
+break;
+case '%':
+result = Integer.parseInt(op1) %
+Integer.parseInt(op2);
+break;
+}
+
+System.out.println(op1 + ' ' + op3 + ' ' + op2
++ " = " + result);
+}
+}
+
+boolean checkInput(String op1, String op2) {
+try {
+Integer.parseInt(op1);
+} catch (NumberFormatException ex) {
+System.out.println("Invalid Input: " + op1);
+System.exit(1);
+}
+try {
+Integer.parseInt(op2);
+} catch (NumberFormatException ex) {
+System.out.println("Invalid Input: " + op2);
+System.exit(2);
+}
+return true;
+}
+}
